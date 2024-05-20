@@ -31,6 +31,23 @@ public class CadastroCozinha {
  */
 	} 
 	
+//	-> Busca um OBJETO do TIPO "Cozinha" pelo ID
+	public Cozinha buscar(Long id) {
+		
+		return manager.find(Cozinha.class, id);
+	}
+
+//	-> Busca OBJETOS do TIPO "Cozinha" pelo ATRIBUTO "nome" (que não o ID)
+//		- Uma das formas de se fazer isso
+	public List<Cozinha> buscarNome(String nome) {
+		
+		TypedQuery<Cozinha> cozinhaNomeQuery = manager
+				.createQuery("select c from Cozinha c where c.nome = :nome", Cozinha.class)
+				.setParameter("nome", nome);
+	
+		return cozinhaNomeQuery.getResultList();
+	}
+	
 	@Transactional
 	public Cozinha adicionar(Cozinha cozinha) {
 				
