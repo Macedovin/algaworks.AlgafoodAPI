@@ -48,10 +48,10 @@ public class CadastroCozinha {
 		return cozinhaNomeQuery.getResultList();
 	}
 	
+//	O MÉTODO agora ADICIONA e ATUALIZA/ FAZ UPDATE de OBJETOS/ REGISTROS no Bnaco de Dados
 	@Transactional
-	public Cozinha adicionar(Cozinha cozinha) {
+	public Cozinha salvar(Cozinha cozinha) {
 				
 		return manager.merge(cozinha);
 	}
-	
 }
