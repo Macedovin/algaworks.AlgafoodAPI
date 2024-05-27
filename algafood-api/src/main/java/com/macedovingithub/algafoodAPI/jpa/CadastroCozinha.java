@@ -54,4 +54,13 @@ public class CadastroCozinha {
 				
 		return manager.merge(cozinha);
 	}
+	
+	@Transactional
+	public void remover(Cozinha cozinha) {
+
+//		-> Tornando o OBJETO gerenciado pelo CONTEXTO DE PERSISTÊNCIA 			
+		cozinha = buscar(cozinha.getId());
+		
+		manager.remove(cozinha);
+	}
 }
