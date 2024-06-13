@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.macedovingithub.algafoodAPI.AlgafoodApiApplication;
 import com.macedovingithub.algafoodAPI.domain.model.Cozinha;
+import com.macedovingithub.algafoodAPI.domain.repository.CozinhaRepository;
 
 /*
  * Classe criada para que executar os testes de integração com o banco de dados sem a necessidade de subir
@@ -23,12 +24,19 @@ public class ConsultaCozinhaMain {
 		ApplicationContext applicationContext = new SpringApplicationBuilder(AlgafoodApiApplication.class)
 				.web(WebApplicationType.NONE)
 				.run(args);
+
+/*
+ * 	 -> Exemplo de sintaxe com COLLECTION-ORIENTED REPOSITORY //
+ * 		CozinhaRepository cozinhas = applicationContext.getBean(CozinhaRepository.class);
+ * 
+ *  	List<Cozinha> todasCozinhas = cozinhas.todas();
+ */		
+		CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
+
+
+		List<Cozinha> todasCozinhas = cozinhaRepository.listar();
 		
-		CadastroCozinha cadastroCozinha = applicationContext.getBean(CadastroCozinha.class);
-		
-		List<Cozinha> cozinhas = cadastroCozinha.listar();
-		
-		for (Cozinha cozinha : cozinhas) {
+		for (Cozinha cozinha : todasCozinhas) {
 			
 			System.out.println(cozinha.getNome());
 		}

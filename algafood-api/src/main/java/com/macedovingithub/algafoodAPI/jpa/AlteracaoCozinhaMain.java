@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.macedovingithub.algafoodAPI.AlgafoodApiApplication;
 import com.macedovingithub.algafoodAPI.domain.model.Cozinha;
+import com.macedovingithub.algafoodAPI.domain.repository.CozinhaRepository;
 
 /*
  * Classe criada para que executar os testes de integração com o banco de dados sem a necessidade de subir
@@ -22,7 +23,7 @@ public class AlteracaoCozinhaMain {
 				.web(WebApplicationType.NONE)
 				.run(args);
 		
-		CadastroCozinha cadastroCozinha = applicationContext.getBean(CadastroCozinha.class);
+		CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
 		
 //		-> Chamo o método adicionar() que, por sua vez, chama o método merge()
 //			- Passando um ID já existente no Banco de Dados
@@ -33,6 +34,6 @@ public class AlteracaoCozinhaMain {
 //		cozinha = cadastroCozinha.adicionar(cozinha);
 		
 //		-> Refatorando o nome do antigo MÉTODO adicionar()
-		cozinha = cadastroCozinha.salvar(cozinha);
+		cozinha = cozinhaRepository.salvar(cozinha);
 	}
 }

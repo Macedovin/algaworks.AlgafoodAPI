@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.macedovingithub.algafoodAPI.AlgafoodApiApplication;
 import com.macedovingithub.algafoodAPI.domain.model.Cozinha;
+import com.macedovingithub.algafoodAPI.domain.repository.CozinhaRepository;
 
 /*
  * Classe criada para que executar os testes de integração com o banco de dados sem a necessidade de subir
@@ -21,12 +22,19 @@ public class ExclusaoCozinhaMain {
 		ApplicationContext applicationContext = new SpringApplicationBuilder(AlgafoodApiApplication.class)
 				.web(WebApplicationType.NONE)
 				.run(args);
+
+	/*
+	 * 	 -> Exemplo de sintaxe com COLLECTION-ORIENTED REPOSITORY 
+	 * 		CozinhaRepository cozinhas = applicationContext.getBean(CozinhaRepository.class);
+	 * 
+	 *  	cozinhas.remover(cozinha);
+	 */	
 		
-		CadastroCozinha cadastroCozinha = applicationContext.getBean(CadastroCozinha.class);
+		CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
 		
 		Cozinha cozinha = new Cozinha();
 		cozinha.setId(1L);
 
-		cadastroCozinha.remover(cozinha);
+		cozinhaRepository.remover(cozinha);
 	}
 }

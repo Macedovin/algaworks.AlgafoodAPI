@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.macedovingithub.algafoodAPI.AlgafoodApiApplication;
 import com.macedovingithub.algafoodAPI.domain.model.Cozinha;
+import com.macedovingithub.algafoodAPI.domain.repository.CozinhaRepository;
 
 /*
  * Classe criada para que executar os testes de integração com o banco de dados sem a necessidade de subir
@@ -24,15 +25,15 @@ public class BuscaCozinhaMain {
 				.web(WebApplicationType.NONE)
 				.run(args);
 		
-		CadastroCozinha cadastroCozinha = applicationContext.getBean(CadastroCozinha.class);
+		CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
 
 //		-> Chama o método que executa a busca pelo ID
-		Cozinha cozinha = cadastroCozinha.buscar(1L);
+		Cozinha cozinha = cozinhaRepository.buscar(1L);
 		
 		System.out.println("Nome da Cozinha: " + cozinha.getNome());
 
 //		-> Chama o método que executa a busca pelo ATRIBUTO "nome", referenciando o mesmo OBJETO
-		List<Cozinha> cozinhaNomes = cadastroCozinha.buscarNome("Tailandesa");  
+		List<Cozinha> cozinhaNomes = cozinhaRepository.buscarNome("Tailandesa");  
 		
 		for (Cozinha cozinhaN: cozinhaNomes) {
 			

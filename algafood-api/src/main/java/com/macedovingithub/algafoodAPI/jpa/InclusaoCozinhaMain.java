@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 
 import com.macedovingithub.algafoodAPI.AlgafoodApiApplication;
 import com.macedovingithub.algafoodAPI.domain.model.Cozinha;
+import com.macedovingithub.algafoodAPI.domain.repository.CozinhaRepository;
 
 /*
  * Classe criada para que executar os testes de integração com o banco de dados sem a necessidade de subir
@@ -22,7 +23,7 @@ public class InclusaoCozinhaMain {
 				.web(WebApplicationType.NONE)
 				.run(args);
 		
-		CadastroCozinha cadastroCozinha = applicationContext.getBean(CadastroCozinha.class);
+		CozinhaRepository cozinhaRepository = applicationContext.getBean(CozinhaRepository.class);
 		
 		Cozinha cozinha1 = new Cozinha();
 		cozinha1.setNome("Brasileira");
@@ -31,8 +32,8 @@ public class InclusaoCozinhaMain {
 		cozinha2.setNome("Japonesa");
 
 //		-> Refatorando o nome do antigo MÉTODO adicionar()		
-		cozinha1 = cadastroCozinha.salvar(cozinha1);
-		cozinha2 = cadastroCozinha.salvar(cozinha2);
+		cozinha1 = cozinhaRepository.salvar(cozinha1);
+		cozinha2 = cozinhaRepository.salvar(cozinha2);
 		
 		System.out.printf("%d - %s\n", cozinha1.getId(), cozinha1.getNome());
 		System.out.printf("%d - %s\n", cozinha2.getId(), cozinha2.getNome());
